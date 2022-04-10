@@ -1,0 +1,2 @@
+# expenses
+Automate expenses tracking
