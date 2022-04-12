@@ -32,7 +32,10 @@ jobs:
       - name: execute py script # run the run.py to get the latest data
         run: |
           python test2.py
-        #env:
-         # key: ${{ secrets.key }}
+        env:
+          SPLITWISE_CONSUMER_KEY: '${{ secrets.SPLITWISE_CONSUMER_KEY }}'
+          SPLITWISE_CONSUMER_SECRET_KEY: '${{ secrets.SPLITWISE_CONSUMER_SECRET_KEY }}'
+          SPLITWISE_API_KEY: '${{ secrets.SPLITWISE_API_KEY }}'
+          GOOGLE_JSON_KEY: '${{ secrets.GOOGLE_JSON_KEY }}'
       #- name: export index
       #  .... # use crosponding script or actions to help export.
