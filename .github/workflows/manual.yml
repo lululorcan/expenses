@@ -36,6 +36,6 @@ jobs:
           SPLITWISE_CONSUMER_KEY: '${{ secrets.SPLITWISE_CONSUMER_KEY }}'
           SPLITWISE_CONSUMER_SECRET_KEY: '${{ secrets.SPLITWISE_CONSUMER_SECRET_KEY }}'
           SPLITWISE_API_KEY: '${{ secrets.SPLITWISE_API_KEY }}'
-          GOOGLE_JSON_KEY: '${{ secrets.GOOGLE_JSON_KEY }}'
+          GOOGLE_JSON_KEY: '${{ toJSON(secrets.GOOGLE_JSON_KEY) }}'
       #- name: export index
       #  .... # use crosponding script or actions to help export.
