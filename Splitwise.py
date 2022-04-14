@@ -27,7 +27,7 @@ from googleapiclient.discovery import build
 from google.oauth2 import service_account
 from GetCategoryIDs import GetCategoryIDs
 import logging
-import ast
+from cryptography.fernet import Fernet
 
 load_dotenv()
 
@@ -60,11 +60,22 @@ s = Splitwise(s_consumer_key,
 
 
 # Connect to GSheets
-GOOGLE_JSON_KEY=os.environ['GOOGLE_JSON_KEY']
+ENCRYPT_KEY= os.environ['ENCRYPT_KEY']
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
-keys = ast.literal_eval(GOOGLE_JSON_KEY)
-
+#keys = ast.literal_eval(GOOGLE_JSON_KEY)
+f = Fernet(ENCRYPT_KEY)
+with open("encrypt_google_cloud_credentials.json", "rb") as file:
+# read the encrypted data
+    encrypted_data = file.read()
+# decrypt data
+    keys = f.decrypt(encrypted_data)
+    #(keys)
+    import json
+keys = json.loads(keys)
+    #keys = ast.literal_eval(keys)
 creds = None
+#creds = service_account.Credentials.from_service_account_file(
+#        keys, scopes=SCOPES)
 creds = service_account.Credentials.from_service_account_info(
         keys, scopes=SCOPES)
 
