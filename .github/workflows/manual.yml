@@ -31,7 +31,7 @@ jobs:
       - run: pip install -r requirements.txt
       - name: execute py script # run the run.py to get the latest data
         run: |
-          python test2.py
+          python test.py
         env:
           SPLITWISE_CONSUMER_KEY: '${{ secrets.SPLITWISE_CONSUMER_KEY }}'
           SPLITWISE_CONSUMER_SECRET_KEY: '${{ secrets.SPLITWISE_CONSUMER_SECRET_KEY }}'
