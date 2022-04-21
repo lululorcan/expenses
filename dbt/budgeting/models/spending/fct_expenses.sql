@@ -11,21 +11,25 @@ select
   ex.date,
   --deleted_date,
   ex.exp_id,
-  cat.cat_name,
-  cat.subcat_name,
-  ex.exp_desc,
+  --cat.cat_name,
+  --cat.subcat_name,
+  CASE
+    WHEN  LOWER(ex.exp_desc) LIKE '%.hol%' OR
+          LOWER(ex.exp_desc) LIKE '%hol.%' THEN "Holiday"
+    ELSE cat.cat_name
+    END AS cat_name,
   CASE
     WHEN  LOWER(ex.exp_desc) LIKE '%.pub%' OR
           LOWER(ex.exp_desc) LIKE '%pub.%' THEN "Pub"
-    WHEN  LOWER(ex.exp_desc) LIKE '%.misc%' OR
-          LOWER(ex.exp_desc) LIKE '%misc.%' THEN "Miscellaneous Ess."
-    WHEN  LOWER(ex.exp_desc) LIKE '%.nisc%' OR
-          LOWER(ex.exp_desc) LIKE '%nisc.%' THEN "Miscellaneous Non-Ess."
-    WHEN  LOWER(ex.exp_desc) LIKE '%lorcan%' OR
-          LOWER(ex.exp_desc) LIKE '%grace%' THEN "Personal Spending"
-          END as parent_category,
-
-
+    WHEN  LOWER(ex.exp_desc) LIKE '%.big%' OR
+          LOWER(ex.exp_desc) LIKE '%big.%' THEN "Big Purchase"
+    WHEN  LOWER(ex.exp_desc) LIKE '%.hol%' OR
+          LOWER(ex.exp_desc) LIKE '%hol.%' THEN "Holiday"
+    WHEN  LOWER(ex.exp_desc) LIKE '%.imm%' OR
+          LOWER(ex.exp_desc) LIKE '%imm.%' THEN "Immigration Costs"
+    ELSE ex.subcat_name
+    END as subcat_name,
+  ex.exp_desc,
   ex.creation_method,
   ex.exp_cost ,
   ex.exp_currency,
@@ -34,7 +38,8 @@ select
   ex.last_name,
   ex.net_balance,
   ex.paid_share,
-  ex.owed_share
+  ex.owed_share,
+  -- Number of users in Expense
   from expenses ex
   left join category cat on ex.subcat_id = cat.subcat_id
   where 1=1
