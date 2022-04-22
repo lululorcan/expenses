@@ -44,4 +44,4 @@ select
   left join category cat on ex.subcat_id = cat.subcat_id
   where 1=1
   AND deleted_date IS NULL
-  AND creation_method NOT IN ('debt_consolidation','payment')
+  AND ifnull(creation_method,'python') NOT IN ('debt_consolidation','payment')
