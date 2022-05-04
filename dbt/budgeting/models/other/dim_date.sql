@@ -3,7 +3,6 @@ with max_date as (
       select date(max(date)) as max_date from {{ source('splitwise_expenses', 'splitwise_expenses') }}
 
   )
-)
 ,
 generic_date_dim AS (
 
@@ -29,7 +28,7 @@ FROM (
 )
 SELECT *,
 CASE
-WHEN 
+WHEN
   EXTRACT(MONTH FROM dd.full_date) = EXTRACT(MONTH FROM a.max_date) then "Current Month"
 WHEN
   EXTRACT(MONTH FROM dd.full_date) = EXTRACT(MONTH FROM a.max_date) then "Previous Month"
