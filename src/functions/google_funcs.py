@@ -41,6 +41,31 @@ def gsheet_connect(keys):
 
     return gsheet
 
+def gsheet_export(keys,spreadsheet_id,gsheet_export_range,date_format = '%Y%m%d'):
+    # Does not work
+    # export transaction data from google sheet
+    gsheet = gsheet_connect(keys)
+    spreadsheet_id = spreadsheet_id
+    gsheet_export_range = gsheet_export_range
+    date_format = date_format
+    result = gsheet.values().get(spreadsheetId=spreadsheet_id,
+                                range=gsheet_export_range).execute()
+    values = result.get('values', [])
+
+    # Format as DF and promote first row as headers
+    df = pd.DataFrame(values)
+    header_row = 0
+    df.columns = df.iloc[header_row]
+    df = df.drop(header_row)
+    df = df.reset_index(drop=True)
+
+    # Convert Data types
+    #gsheets_export =  gsheets_export.convert_dtypes()
+    df['Date'] = pd.to_datetime(df['Date'] ,errors = 'coerce',format = date_format)
+    df['Cost'] = pd.to_numeric(df['Cost'])
+    return
+    gsheet
+
 def big_query_connect(keys):
     SCOPES = ['https://www.googleapis.com/auth/bigquery']
     creds = service_account.Credentials.from_service_account_info(
@@ -95,7 +120,7 @@ def big_query_load_spending(client,table_id,dataframe):
             y = False
         filter_string_cols.append(y)
     string_columns = dataframe_dtype[filter_string_cols]
-    # Update schema for string columns only 
+    # Update schema for string columns only
     schema = []
     for s in string_columns.index.tolist():
         a = bigquery.SchemaField(s, bigquery.enums.SqlTypeNames.STRING)

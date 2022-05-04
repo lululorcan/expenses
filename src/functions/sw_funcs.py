@@ -54,12 +54,14 @@ def sw_get_category_dim(s):
 
     cat_df = pd.DataFrame(rows, columns=
     ["cat_id", "cat_name","subcat_id","subcat_name"])
+    cat_df['cat_name: subcat_name'] = cat_df['cat_name'] + ': ' +  cat_df['subcat_name']
 
     df_dtypes = {
     "cat_id" : "int64",
     "cat_name" : "category" ,
     "subcat_id" : "int64",
-    "subcat_name" : "category"
+    "subcat_name" : "category",
+    "cat_name: subcat_name" : "category"
     }
     #cat_df['Category'] = cat_df['Main Category'] + ': ' +  cat_df['SubCategory']
     cat_df = cat_df.astype(df_dtypes)
@@ -133,3 +135,6 @@ def sw_export_data(s,group_id,limit = 100000):
     export_df = export_df.astype(df_dtypes)
     ##TODO remove subcat_name as this can be derived from cat_dim table
     return export_df
+
+def sw_import_df(s, df):
+    pass
