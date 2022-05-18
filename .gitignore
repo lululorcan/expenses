@@ -132,3 +132,4 @@ dmypy.json
 google_cloud_credentials.json
 decrypt_encrypt_google_cloud_credentials.json
 key.key
+ignore/

@@ -120,19 +120,16 @@ for ind in df.index:
      expense.addUser(user1)
      expense.addUser(user2)
      nExpense, errors = s.createExpense(expense)
-     # check if there's an error
-     try: #AttributeError
+     try:
         error = errors.getErrors()
      except AttributeError:
         error = "No error"
-     # print out expense_id
+
      expense_errors.append(error)
-     try: #AttributeError
-        expense_id = nExpense.getId()
+     try:
+        expense_id = nExpense.getId()ß
      except AttributeError:
         expense_id = 0
-     #print(nExpense.getId())
-     #print(error)
      new_expenses_ids.append(expense_id)
      expense_desc.append(desc)
      if  error == "No error":
@@ -142,8 +139,4 @@ for ind in df.index:
 
 new_expense_ids_df  = pd.DataFrame(expense_desc, columns=['Description'])
 new_expense_ids_df['ID'] = new_expenses_ids
-new_expense_ids_df.to_csv("new_ids.csv")
-#google_funcs.big_query_load_spending(
-#                    client,
-#                    table_id = "budgeting.dim_splitwise_category",
-#                    dataframe = cat_dim)
+#new_expense_ids_df.to_csv("new_ids.csv")
