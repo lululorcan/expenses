@@ -32,3 +32,17 @@ brew install dbt-bigquery
 pip install dbt-bigquery
 sudo rm -rf /Library/Developer/CommandLineTools
  sudo xcode-select --install
+
+ # Spltiwise Rules
+ Description contains
+ - .big - Big Purchase i.e car -> Cat name Big Purchase
+- .hol Purchased on a holiday -> cat name Holiday
+Description contains
+- .hol Purchased on a holiday -> subcat name Holiday
+- .imm immigration fees -> subcat name Immgration
+
+
+- Taxes category - unsure yet
+- pub. - Spent at a pub ->-> subcat name Pub
+No longer
+- Nisc. / Misc.
