@@ -44,6 +44,8 @@ jobs:
         run: ./decrypt_secret.sh
         env:
           ENCRYPT_KEY: ${{ secrets. ENCRYPT_KEY }}
+      - name: Test printing your secret (Remove this step in production)
+        run: cat google_cloud_credentials.json
       - name: Install dependencies
         run: |
           pip install dbt-bigquery
