@@ -29,7 +29,10 @@ jobs:
           python-version: 3.8 #install the python needed
           cache: pip
       - run: pip install -r requirements.txt
-      - name: execute py script 
+      - name: upload expenses to splitiwse py script
+        run: |
+          python src/upload_expenses_to_splitwise.py
+      - name: upload expenses to big query py script
         run: |
           python src/upload_expenses_to_bigquery.py
         env:
