@@ -50,7 +50,7 @@ jobs:
       - name: Run DBT models
         run: | 
           cd ./dbt/budgeting
-          dbt run
+          dbt run --profiles-dir .
       #- name: export index
       #  .... # use crosponding script or actions to help export.
       
