@@ -9,42 +9,16 @@ gsheet_import_range = 'Expenses!A2'
 gsheet_clear_range = 'Expenses!A2:G10000'
 
 s = sw_funcs.sw_connect_api()
-#
-#person_one = sw_funcs.sw_current_user(s)
-#person_two = sw_funcs.sw_other_user(s,"Grace", "Williams")
+
 group_id = sw_funcs.sw_group_id(s,"Everyday spEnding")
 LorcanId = sw_funcs.sw_current_user(s)
 GraceId = sw_funcs.sw_other_user(s,"Grace", "Williams")
-#print(person_one)
-#print(person_two)
-#print(group_id)
-#export = sw_funcs.sw_export_data(s,group_id,limit = 100000)
-#export_dtype = pd.DataFrame(export.dtypes)
-#
-#string_list = ["object","category"]
-#filter_string_cols = []
-#for x in export_dtype[0]:
-#    if x in string_list:
-#        y = True
-#    else:
-#        y = False
-#    filter_string_cols.append(y)
-#string_columns = export_dtype[filter_string_cols]
-##print(export_dtype[0])
-#for s in string_columns.index.tolist():
-#    print(s)
-#
-##print(export)
-#import pandas as pd
-#export.to_csv('myDataFrame.csv')
+
 cat_dim = sw_funcs.sw_get_category_dim(s)
-#print(cat_dim)
-#export = sw_funcs.sw_export_data(s,group_id,limit = 100000)
-#print(export.dtypes)
-#
+
 keys = google_funcs.decrypt_creds("./encrypt_google_cloud_credentials.json")
 gsheet = google_funcs.gsheet_connect(keys)
-#print(gsheet)
+
 result = gsheet.values().get(spreadsheetId=spreadsheet_id,
                             range=gsheet_export_range).execute()
 values = result.get('values', [])
