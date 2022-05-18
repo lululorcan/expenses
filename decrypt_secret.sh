@@ -5,4 +5,4 @@
 # --batch to prevent interactive command
 # --yes to assume "yes" for questions
 gpg --quiet --batch --yes --decrypt --passphrase="$ENCRYPT_KEY" \
---output $HOME/google_cloud_credentials.json google_cloud_credentials.json.gpg
+--output google_cloud_credentials.json google_cloud_credentials.json.gpg
