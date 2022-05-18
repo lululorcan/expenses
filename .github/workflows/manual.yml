@@ -40,7 +40,17 @@ jobs:
       - name: upload expenses to big query py script
         run: |
           python src/upload_expenses_to_bigquery.py
-
+      - name: Decrypt large secret
+        run: ./decrypt_secret.sh
+        env:
+          ENCRYPT_KEY: ${{ secrets. ENCRYPT_KEY }}
+      - name: Install dependencies
+        run: |
+          pip install dbt
+      - name: Run DBT models
+        run: | 
+          cd ./dbt/budgeting
+          dbt run
       #- name: export index
       #  .... # use crosponding script or actions to help export.
       
