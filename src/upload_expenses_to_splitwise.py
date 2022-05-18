@@ -127,7 +127,7 @@ for ind in df.index:
 
      expense_errors.append(error)
      try:
-        expense_id = nExpense.getId()ß
+        expense_id = nExpense.getId()
      except AttributeError:
         expense_id = 0
      new_expenses_ids.append(expense_id)
