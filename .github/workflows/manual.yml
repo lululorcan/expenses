@@ -15,7 +15,12 @@ on:
         default: 'World'
         # Input has to be provided for the workflow to run
         required: true
-
+env:
+  SPLITWISE_CONSUMER_KEY: '${{ secrets.SPLITWISE_CONSUMER_KEY }}'
+  SPLITWISE_CONSUMER_SECRET_KEY: '${{ secrets.SPLITWISE_CONSUMER_SECRET_KEY }}'
+  SPLITWISE_API_KEY: '${{ secrets.SPLITWISE_API_KEY }}'
+  ENCRYPT_KEY: '${{ secrets.ENCRYPT_KEY }}'
+  
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs: 
   build:
@@ -35,11 +40,7 @@ jobs:
       - name: upload expenses to big query py script
         run: |
           python src/upload_expenses_to_bigquery.py
-        env:
-          SPLITWISE_CONSUMER_KEY: '${{ secrets.SPLITWISE_CONSUMER_KEY }}'
-          SPLITWISE_CONSUMER_SECRET_KEY: '${{ secrets.SPLITWISE_CONSUMER_SECRET_KEY }}'
-          SPLITWISE_API_KEY: '${{ secrets.SPLITWISE_API_KEY }}'
-          ENCRYPT_KEY: '${{ secrets.ENCRYPT_KEY }}'
+
       #- name: export index
       #  .... # use crosponding script or actions to help export.
       
