@@ -46,7 +46,7 @@ jobs:
           ENCRYPT_KEY: ${{ secrets. ENCRYPT_KEY }}
       - name: Install dependencies
         run: |
-          pip install dbt
+          pip install dbt-bigquery
       - name: Run DBT models
         run: | 
           cd ./dbt/budgeting
