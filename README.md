@@ -20,7 +20,7 @@ Alternatively do this: https://docs.github.com/en/actions/security-guides/encryp
 ## Connections
 SplitWise
 GoogleCloud
-
+DBT
 
 
 ## DBT
@@ -33,16 +33,10 @@ pip install dbt-bigquery
 sudo rm -rf /Library/Developer/CommandLineTools
  sudo xcode-select --install
 
- # Spltiwise Rules
- Description contains
- - .big - Big Purchase i.e car -> Cat name Big Purchase
-- .hol Purchased on a holiday -> cat name Holiday
+ # Spltiwise  Rules
 Description contains
 - .hol Purchased on a holiday -> subcat name Holiday
-- .imm immigration fees -> subcat name Immgration
-
-
-- Taxes category - unsure yet
+- .imm immigration fees -> subcat name Immgration Costs
+- .big - Big Purchase i.e car -> subcat name Big Purchase
 - pub. - Spent at a pub ->-> subcat name Pub
-No longer
-- Nisc. / Misc.
+
